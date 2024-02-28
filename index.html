@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exemplos JavaScript</title>
+</head>
+<body>
+
+<h1>Exemplos JavaScript</h1>
+
+<button onclick="solicitarTipoDado()">Verificar Tipo de Dado</button>
+<button onclick="verificarNumeroPrimo()">Verificar Número Primo</button>
+<button onclick="verificarParOuImpar()">Verificar Par ou Ímpar</button>
+<button onclick="calcularFatorial()">Calcular Fatorial</button>
+
+<script>
+  function solicitarTipoDado() {
+    var dado = prompt("Digite um dado:");
+    if (dado !== null) {
+      var tipo = typeof(dado);
+      var resultado = document.createElement("p");
+      resultado.textContent = "O tipo do dado é: " + tipo;
+      document.body.appendChild(resultado);
+    } else {
+      var mensagem = document.createElement("p");
+      mensagem.textContent = "Obrigado por visitar esta página";
+      document.body.appendChild(mensagem);
+    }
+  }
+
+  function verificarNumeroPrimo() {
+    var numero = parseInt(prompt("Digite um número inteiro positivo:"));
+    if (Number.isInteger(numero) && numero > 1) {
+      var primo = true;
+      for (var i = 2; i <= Math.sqrt(numero); i++) {
+        if (numero % i === 0) {
+          primo = false;
+          break;
+        }
+      }
+      if (primo) {
+        alert(numero + " é um número primo.");
+      } else {
+        alert(numero + " não é um número primo.");
+      }
+    } else {
+      alert("Por favor, digite um número inteiro positivo maior que 1.");
+    }
+  }
+
+  function verificarParOuImpar() {
+    var numero = parseInt(prompt("Digite um número inteiro positivo:"));
+    if (Number.isInteger(numero) && numero >= 0) {
+      if (numero % 2 === 0) {
+        alert(numero + " é um número par.");
+      } else {
+        alert(numero + " é um número ímpar.");
+      }
+    } else {
+      alert("Por favor, digite um número inteiro positivo.");
+    }
+  }
+
+  function calcularFatorial() {
+    var numero = parseInt(prompt("Digite um número inteiro positivo:"));
+    if (Number.isInteger(numero) && numero >= 0) {
+      var fatorial = 1;
+      for (var i = 2; i <= numero; i++) {
+        fatorial *= i;
+      }
+      alert("O fatorial de " + numero + " é: " + fatorial);
+    } else {
+      alert("Por favor, digite um número inteiro positivo.");
+    }
+  }
+</script>
+
+</body>
+</html>
