@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice Principal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Atividades Laboratório de Engenharia de Software</h2>
+
+    <button onclick="abrirAtividade(1)">Atividade 1</button>
+    <button onclick="abrirAtividade(2)">Atividade 2</button>
+    <button onclick="abrirAtividade(3)">Atividade 3</button>
+    <button onclick="abrirAtividade(4)">Atividade 4</button>
+
+    <script>
+        // Função para abrir uma atividade específica
+        function abrirAtividade(numeroAtividade) {
+            var nomeAtividade = 'atividade' + numeroAtividade + '.html';
+            window.location.href = nomeAtividade;
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Dinâmico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            padding: 5px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ol {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Adicionar Valores ao Array</h2>
+
+    <form id="form">
+        <label for="valor">Digite um valor: </label>
+        <input type="text" id="valor" required>
+        <button type="button" onclick="adicionarValor()">Adicionar</button>
+    </form>
+
+    <h2>Dados Cadastrados em Ordem Alfabética</h2>
+
+    <ol id="lista"></ol>
+
+    <button onclick="voltarParaIndex()">Voltar para o Index</button>
+    <button onclick="abrirGitHub()">GitHub</button>
+
+    <script>
+        var valores = [];
+
+        function adicionarValor() {
+            var novoValor = document.getElementById('valor').value;
+
+            valores.push(novoValor);
+            valores.sort();
+
+            atualizarLista();
+        }
+
+        function atualizarLista() {
+            var lista = document.getElementById('lista');
+            lista.innerHTML = '';
+
+            valores.forEach(function (valor) {
+                var li = document.createElement('li');
+                li.appendChild(document.createTextNode(valor));
+                lista.appendChild(li);
+            });
+        }
+
+        function voltarParaIndex() {
+            window.location.href = "C:/Lab/Atividades Laboratório de Engenharia de Software/AtividadesJavaScript/index.html";
+        }
+
+        
+    </script>
+
+</body>
+
+</html>

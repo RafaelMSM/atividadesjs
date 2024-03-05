@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplos JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        #backButton {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Exemplos JavaScript</h1>
+
+    <button onclick="solicitarTipoDado()">Verificar Tipo de Dado</button>
+    <button onclick="verificarNumeroPrimo()">Verificar Número Primo</button>
+    <button onclick="verificarParOuImpar()">Verificar Par ou Ímpar</button>
+    <button onclick="calcularFatorial()">Calcular Fatorial</button>
+
+    <div id="backButton">
+        <button onclick="voltarParaIndex()">Voltar para o Index</button>
+    </div>
+
+    <script>
+        function solicitarTipoDado() {
+            var dado = prompt("Digite um dado:");
+            if (dado !== null) {
+                var tipo = typeof dado;
+                exibirResultado("O tipo do dado é: " + tipo);
+            } else {
+                exibirResultado("Obrigado por visitar esta página");
+            }
+        }
+
+        function verificarNumeroPrimo() {
+            var numero = obterNumeroInteiroPositivo("Digite um número inteiro positivo:");
+            if (numero !== null) {
+                var primo = true;
+                for (var i = 2; i <= Math.sqrt(numero); i++) {
+                    if (numero % i === 0) {
+                        primo = false;
+                        break;
+                    }
+                }
+                exibirAlerta(primo ? numero + " é um número primo." : numero + " não é um número primo.");
+            }
+        }
+
+        function verificarParOuImpar() {
+            var numero = obterNumeroInteiroPositivo("Digite um número inteiro positivo:");
+            if (numero !== null) {
+                exibirAlerta(numero % 2 === 0 ? numero + " é um número par." : numero + " é um número ímpar.");
+            }
+        }
+
+        function calcularFatorial() {
+            var numero = obterNumeroInteiroPositivo("Digite um número inteiro positivo:");
+            if (numero !== null) {
+                var fatorial = calcularFatorialDoNumero(numero);
+                exibirAlerta("O fatorial de " + numero + " é: " + fatorial);
+            }
+        }
+
+        function voltarParaIndex() {
+            window.location.href = "C:/Lab/Atividades Laboratório de Engenharia de Software/AtividadesJavaScript/index.html";
+        }
+
+
+        function obterNumeroInteiroPositivo(mensagem) {
+            var numero = parseInt(prompt(mensagem));
+            if (Number.isInteger(numero) && numero >= 0) {
+                return numero;
+            } else {
+                alert("Por favor, digite um número inteiro positivo.");
+                return null;
+            }
+        }
+
+        function calcularFatorialDoNumero(numero) {
+            var fatorial = 1;
+            for (var i = 2; i <= numero; i++) {
+                fatorial *= i;
+            }
+            return fatorial;
+        }
+
+        function exibirAlerta(mensagem) {
+            alert(mensagem);
+        }
+
+        function exibirResultado(resultado) {
+            var resultadoElemento = document.createElement("p");
+            resultadoElemento.textContent = resultado;
+            document.body.appendChild(resultadoElemento);
+        }
+    </script>
+
+</body>
+
+</html>
