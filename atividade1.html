@@ -59,10 +59,22 @@
         function solicitarTipoDado() {
             var dado = prompt("Digite um dado:");
             if (dado !== null) {
-                var tipo = typeof dado;
+                var tipo = obterTipoDetalhado(dado);
                 exibirResultado("O tipo do dado é: " + tipo);
             } else {
                 exibirResultado("Obrigado por visitar esta página");
+            }
+        }
+
+        function obterTipoDetalhado(dado) {
+            if (typeof dado === 'string') {
+                if (!isNaN(parseFloat(dado)) && isFinite(dado)) {
+                    return 'Number';
+                } else {
+                    return 'String';
+                }
+            } else {
+                return typeof dado;
             }
         }
 
@@ -98,7 +110,6 @@
         function voltarParaIndex() {
             window.location.href = "C:/Lab/Atividades Laboratório de Engenharia de Software/AtividadesJavaScript/index.html";
         }
-
 
         function obterNumeroInteiroPositivo(mensagem) {
             var numero = parseInt(prompt(mensagem));
