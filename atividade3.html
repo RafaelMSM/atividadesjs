@@ -41,17 +41,49 @@
 <body>
 
     <h2>Atividade 3</h2>
-    <p>Em breve...</p>
+
+    <button onclick="exibirDataAtual()">Exibir Data Atual</button>
+    <button onclick="iniciarRelogio()">Iniciar Relógio</button>
+    <button onclick="verificarPalindromo()">Verificar Palíndromo</button>
+
+    <script>
+        function exibirDataAtual() {
+            var dataAtual = new Date();
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            var formatoData = new Intl.DateTimeFormat('pt-BR', options).format(dataAtual);
+            alert(formatoData);
+        }
+
+        function iniciarRelogio() {
+            atualizarHorario();
+        }
+
+        function atualizarHorario() {
+            var horaAtual = new Date().toLocaleTimeString();
+            console.log(horaAtual);
+            setTimeout(atualizarHorario, 1000); // Chama a função novamente após 1 segundo
+        }
+
+        function verificarPalindromo() {
+            var texto = prompt("Digite uma palavra ou frase:");
+            if (texto !== null) {
+                var textoSemEspacos = texto.replace(/\s/g, '').toLowerCase();
+                var textoReverso = textoSemEspacos.split('').reverse().join('');
+                var mensagem = (textoSemEspacos === textoReverso) ? "É um palíndromo!" : "Não é um palíndromo!";
+                alert(mensagem);
+            }
+        }
+    </script>
 
     <button onclick="voltarParaIndex()">Voltar para o Index</button>
     <button onclick="abrirGitHub()">GitHub</button>
 
     <script>
         function voltarParaIndex() {
-            window.location.href = "C:/Lab/Atividades Laboratório de Engenharia de Software/atividadesJavascript/index.html";
+            window.location.href = "index.html"; // Caminho relativo
         }
 
-      
+        
     </script>
 
 </body>
