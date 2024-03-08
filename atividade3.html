@@ -46,6 +46,8 @@
     <button onclick="iniciarRelogio()">Iniciar Relógio</button>
     <button onclick="verificarPalindromo()">Verificar Palíndromo</button>
 
+    <div id="clock"></div>
+
     <script>
         function exibirDataAtual() {
             var dataAtual = new Date();
@@ -55,13 +57,24 @@
         }
 
         function iniciarRelogio() {
-            atualizarHorario();
+            atualizarRelogio();
         }
 
-        function atualizarHorario() {
-            var horaAtual = new Date().toLocaleTimeString();
-            console.log(horaAtual);
-            setTimeout(atualizarHorario, 1000); // Chama a função novamente após 1 segundo
+        function atualizarRelogio() {
+            var agora = new Date();
+            var horas = agora.getHours();
+            var minutos = agora.getMinutes();
+            var segundos = agora.getSeconds();
+
+            horas = (horas < 10) ? "0" + horas : horas;
+            minutos = (minutos < 10) ? "0" + minutos : minutos;
+            segundos = (segundos < 10) ? "0" + segundos : segundos;
+
+            var horaFormatada = horas + ":" + minutos + ":" + segundos;
+            document.getElementById("clock").innerText = horaFormatada;
+
+            // Atualiza o relógio a cada segundo
+            setTimeout(atualizarRelogio, 1000);
         }
 
         function verificarPalindromo() {
@@ -73,6 +86,10 @@
                 alert(mensagem);
             }
         }
+
+        function voltarParaIndex() {
+            window.location.href = "index.html"; 
+        }
     </script>
 
     <button onclick="voltarParaIndex()">Voltar para o Index</button>
@@ -80,7 +97,7 @@
 
     <script>
         function voltarParaIndex() {
-            window.location.href = "index.html"; // Caminho relativo
+            window.location.href = "index.html"; 
         }
 
         
