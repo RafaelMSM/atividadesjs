@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,13 +11,8 @@
             margin: 20px;
         }
 
-        h2 {
+        h1 {
             color: #333;
-        }
-
-        p {
-            font-size: 18px;
-            margin-top: 10px;
         }
 
         button {
@@ -35,25 +29,29 @@
         button:hover {
             background-color: #45a049;
         }
+
+        #backButton {
+            margin-top: 20px;
+        }
     </style>
 </head>
-
 <body>
-
-    <h2>Atividade 4</h2>
-    <p>Em breve...</p>
-
+    <h1>Atividade 4</h1>
+    <button onclick="irParaAtividade1()">Ir para Atividade 4.1</button>
+    <button onclick="irParaAtividade2()">Ir para Atividade 4.2</button>
     <button onclick="voltarParaIndex()">Voltar para o Index</button>
-    <button onclick="abrirGitHub()">GitHub</button>
-
     <script>
-        function voltarParaIndex() {
-            window.location.href = "C:/Lab/Atividades Laboratório de Engenharia de Software/atividadesJavascript/index.html";
+        function irParaAtividade1() {
+            window.location.href = "atividade4_1.html";
         }
 
-        
+        function irParaAtividade2() {
+            window.location.href = "atividade4_2.html";
+        }
+
+        function voltarParaIndex() {
+            window.location.href = "index.html";
+        }
     </script>
-
 </body>
-
 </html>

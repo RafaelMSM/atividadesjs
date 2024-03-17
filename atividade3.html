@@ -2,25 +2,29 @@
 <html lang="en">
 
 <head>
+    <!-- Metadados do documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da página -->
     <title>Atividade 3</title>
+    <!-- Estilos CSS embutidos -->
     <style>
+        /* Estilos para o corpo da página */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 20px;
         }
-
+        /* Estilos para os cabeçalhos */
         h2 {
             color: #333;
         }
-
+        /* Estilos para os parágrafos */
         p {
             font-size: 18px;
             margin-top: 10px;
         }
-
+        /* Estilos para os botões */
         button {
             padding: 10px;
             margin: 5px;
@@ -31,7 +35,7 @@
             border: none;
             border-radius: 3px;
         }
-
+        /* Estilos para o hover dos botões */
         button:hover {
             background-color: #45a049;
         }
@@ -40,15 +44,20 @@
 
 <body>
 
+    <!-- Título para a atividade -->
     <h2>Atividade 3</h2>
 
+    <!-- Botões para executar funções JavaScript -->
     <button onclick="exibirDataAtual()">Exibir Data Atual</button>
     <button onclick="iniciarRelogio()">Iniciar Relógio</button>
     <button onclick="verificarPalindromo()">Verificar Palíndromo</button>
 
+    <!-- Div para exibir o relógio -->
     <div id="clock"></div>
 
+    <!-- Script JavaScript -->
     <script>
+        // Função para exibir a data atual
         function exibirDataAtual() {
             var dataAtual = new Date();
             var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -56,10 +65,12 @@
             alert(formatoData);
         }
 
+        // Função para iniciar o relógio
         function iniciarRelogio() {
             atualizarRelogio();
         }
 
+        // Função para atualizar o relógio a cada segundo
         function atualizarRelogio() {
             var agora = new Date();
             var horas = agora.getHours();
@@ -77,6 +88,7 @@
             setTimeout(atualizarRelogio, 1000);
         }
 
+        // Função para verificar se uma palavra ou frase é palíndromo
         function verificarPalindromo() {
             var texto = prompt("Digite uma palavra ou frase:");
             if (texto !== null) {
@@ -87,21 +99,21 @@
             }
         }
 
+        // Função para voltar para a página inicial
         function voltarParaIndex() {
-            window.location.href = "index.html"; 
+            window.location.href = "index.html";
+        }
+
+        // Função para abrir o GitHub
+        function abrirGitHub() {
+            // Coloque o URL do seu repositório do GitHub aqui
+            window.open("https://github.com/seuusuario/seurepositorio", "_blank");
         }
     </script>
 
+    <!-- Botões para voltar para a página inicial e abrir o GitHub -->
     <button onclick="voltarParaIndex()">Voltar para o Index</button>
     <button onclick="abrirGitHub()">GitHub</button>
-
-    <script>
-        function voltarParaIndex() {
-            window.location.href = "index.html"; 
-        }
-
-        
-    </script>
 
 </body>
 

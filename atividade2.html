@@ -2,32 +2,36 @@
 <html lang="en">
 
 <head>
+    <!-- Metadados do documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da página -->
     <title>Array Dinâmico</title>
+    <!-- Estilos CSS embutidos -->
     <style>
+        /* Estilos para o corpo da página */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 20px;
         }
-
+        /* Estilos para os cabeçalhos */
         h2 {
             color: #333;
         }
-
+        /* Estilos para o formulário */
         form {
             margin-bottom: 20px;
         }
-
+        /* Estilos para os rótulos */
         label {
             font-weight: bold;
         }
-
+        /* Estilos para os campos de entrada */
         input {
             padding: 5px;
         }
-
+        /* Estilos para os botões */
         button {
             padding: 10px;
             margin: 5px;
@@ -38,16 +42,16 @@
             border: none;
             border-radius: 3px;
         }
-
+        /* Estilos para o hover dos botões */
         button:hover {
             background-color: #45a049;
         }
-
+        /* Estilos para a lista ordenada */
         ol {
             list-style-type: none;
             padding: 0;
         }
-
+        /* Estilos para os itens da lista */
         li {
             margin: 5px 0;
         }
@@ -56,49 +60,63 @@
 
 <body>
 
+    <!-- Título para adicionar valores ao array -->
     <h2>Adicionar Valores ao Array</h2>
 
+    <!-- Formulário para inserir valores -->
     <form id="form">
         <label for="valor">Digite um valor: </label>
         <input type="text" id="valor" required>
         <button type="button" onclick="adicionarValor()">Adicionar</button>
     </form>
 
+    <!-- Título para os dados cadastrados em ordem alfabética -->
     <h2>Dados Cadastrados em Ordem Alfabética</h2>
 
-    <ol id="lista"></ol>
+    <!-- Lista ordenada para exibir os valores -->
+    <ol id="lista" type="1"></ol>
 
+    <!-- Botões para voltar para a página inicial e abrir o GitHub -->
     <button onclick="voltarParaIndex()">Voltar para o Index</button>
     <button onclick="abrirGitHub()">GitHub</button>
 
+    <!-- Script JavaScript -->
     <script>
+        // Array para armazenar os valores inseridos
         var valores = [];
 
+        // Função para adicionar um valor ao array
         function adicionarValor() {
             var novoValor = document.getElementById('valor').value;
 
-            valores.push(novoValor);
-            valores.sort();
+            valores.push(novoValor); // Adiciona o novo valor ao array
+            valores.sort(); // Ordena os valores em ordem alfabética
 
-            atualizarLista();
+            atualizarLista(); // Atualiza a lista na página
         }
 
+        // Função para atualizar a lista na página
         function atualizarLista() {
             var lista = document.getElementById('lista');
-            lista.innerHTML = '';
+            lista.innerHTML = ''; // Limpa a lista atual
 
             valores.forEach(function (valor) {
-                var li = document.createElement('li');
-                li.appendChild(document.createTextNode(valor));
-                lista.appendChild(li);
+                var li = document.createElement('li'); // Cria um novo elemento de lista
+                li.appendChild(document.createTextNode(valor)); // Adiciona o valor como texto ao elemento de lista
+                lista.appendChild(li); // Adiciona o elemento de lista à lista ordenada
             });
         }
 
+        // Função para voltar para a página inicial
         function voltarParaIndex() {
-            window.location.href = "C:/Lab/Atividades Laboratório de Engenharia de Software/AtividadesJavaScript/index.html";
+            window.location.href = "index.html";
         }
 
-        
+        // Função para abrir o GitHub
+        function abrirGitHub() {
+           
+            window.open("https://github.com/seuusuario/seurepositorio", "_blank");
+        }
     </script>
 
 </body>

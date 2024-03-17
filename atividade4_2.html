@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadados do documento -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da página -->
+    <title>Formulário de Carro</title>
+    <!-- Estilos CSS embutidos -->
+    <style>
+        /* Estilos adicionados */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        form {
+            display: none;
+        }
+
+        .form-active {
+            display: block;
+        }
+
+        .form-container {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #4caf50;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Contêiner principal -->
+    <div class="container">
+        <!-- Título do formulário -->
+        <h2>Formulário de Carro</h2>
+        <!-- Formulário de carro -->
+        <form id="carForm" class="form-active">
+            <div class="form-container">
+                <!-- Campos do formulário -->
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" placeholder="Marca" required><br>
+                <label for="modelo">Modelo:</label>
+                <input type="text" id="modelo" placeholder="Modelo" required><br>
+                <label for="ano">Ano:</label>
+                <input type="number" id="ano" placeholder="Ano" required><br>
+                <label for="cor">Cor:</label>
+                <input type="text" id="cor" placeholder="Cor" required><br>
+                <label for="kilometragem">Kilometragem:</label>
+                <input type="number" id="kilometragem" placeholder="Kilometragem" required><br>
+                <label for="valorFipe">Valor FIPE:</label>
+                <input type="number" id="valorFipe" placeholder="Valor FIPE" required><br>
+            </div>
+            <!-- Botão para submeter o formulário -->
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+        <!-- Botões para voltar para a atividade principal e para o índice -->
+        <button onclick="voltarParaAtividadePrincipal()">Voltar para Atividade 4</button>
+        <button onclick="voltarParaIndex()">Voltar para o Index</button>
+    </div>
+
+    <!-- Script JavaScript -->
+    <script>
+        // Definição da classe Carro
+        class Carro {
+            constructor(marca, modelo, ano, cor, kilometragem, valorFipe) {
+                this.marca = marca;
+                this.modelo = modelo;
+                this.ano = ano;
+                this.cor = cor;
+                this.kilometragem = kilometragem;
+                this.valorFipe = valorFipe;
+            }
+
+            anosUtilizacao() {
+                const anos = new Date().getFullYear() - this.ano;
+                return anos;
+            }
+
+            valorMercado() {
+                if (this.kilometragem <= 30000) {
+                    return this.valorFipe * 1.1;
+                } else if (this.kilometragem > 30000 && this.kilometragem <= 50000) {
+                    return this.valorFipe;
+                } else {
+                    return this.valorFipe * 0.9;
+                }
+            }
+        }
+
+        // Função para submeter o formulário
+        function submitForm() {
+            // Obtenção dos valores dos campos do formulário
+            const marca = document.getElementById('marca').value;
+            const modelo = document.getElementById('modelo').value;
+            const ano = parseInt(document.getElementById('ano').value);
+            const cor = document.getElementById('cor').value;
+            const kilometragem = parseInt(document.getElementById('kilometragem').value);
+            const valorFipe = parseFloat(document.getElementById('valorFipe').value);
+
+            // Criação de um objeto Carro com os valores do formulário
+            const carro = new Carro(marca, modelo, ano, cor, kilometragem, valorFipe);
+
+            // Cálculo dos anos de utilização e do valor de mercado do carro
+            const anos = carro.anosUtilizacao();
+            const valor = carro.valorMercado();
+
+            // Exibição de uma mensagem com os resultados
+            alert(`O carro tem ${anos} anos de utilização e seu valor de mercado é R$ ${valor.toFixed(2)}`);
+        }
+
+        // Função para voltar para a atividade principal
+        function voltarParaAtividadePrincipal() {
+            window.location.href = "atividade4.html";
+        }
+
+        // Função para voltar para o índice
+        function voltarParaIndex() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+
+</html>

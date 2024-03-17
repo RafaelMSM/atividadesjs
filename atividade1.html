@@ -2,20 +2,24 @@
 <html lang="pt-BR">
 
 <head>
+    <!-- Metadados do documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da página -->
     <title>Exemplos JavaScript</title>
+    <!-- Estilos CSS embutidos -->
     <style>
+        /* Estilos para o corpo da página */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 20px;
         }
-
+        /* Estilos para os cabeçalhos */
         h1 {
             color: #333;
         }
-
+        /* Estilos para os botões */
         button {
             padding: 10px;
             margin: 5px;
@@ -26,16 +30,16 @@
             border: none;
             border-radius: 3px;
         }
-
+        /* Estilos para o hover dos botões */
         button:hover {
             background-color: #45a049;
         }
-
+        /* Estilos para os parágrafos */
         p {
             margin-top: 10px;
             font-size: 18px;
         }
-
+        /* Estilos para o botão de voltar */
         #backButton {
             margin-top: 20px;
         }
@@ -44,18 +48,23 @@
 
 <body>
 
+    <!-- Título principal da página -->
     <h1>Exemplos JavaScript</h1>
 
+    <!-- Botões para acionar funções JavaScript -->
     <button onclick="solicitarTipoDado()">Verificar Tipo de Dado</button>
     <button onclick="verificarNumeroPrimo()">Verificar Número Primo</button>
     <button onclick="verificarParOuImpar()">Verificar Par ou Ímpar</button>
     <button onclick="calcularFatorial()">Calcular Fatorial</button>
 
+    <!-- Botão para voltar à página inicial -->
     <div id="backButton">
         <button onclick="voltarParaIndex()">Voltar para o Index</button>
     </div>
 
+    <!-- Script JavaScript -->
     <script>
+        // Função para solicitar e verificar o tipo de dado inserido pelo usuário
         function solicitarTipoDado() {
             var dado = prompt("Digite um dado:");
             if (dado !== null) {
@@ -66,6 +75,7 @@
             }
         }
 
+        // Função para obter o tipo detalhado de um dado
         function obterTipoDetalhado(dado) {
             if (typeof dado === 'string') {
                 if (!isNaN(parseFloat(dado)) && isFinite(dado)) {
@@ -78,6 +88,7 @@
             }
         }
 
+        // Função para verificar se um número é primo
         function verificarNumeroPrimo() {
             var numero = obterNumeroInteiroPositivo("Digite um número inteiro positivo:");
             if (numero !== null) {
@@ -92,6 +103,7 @@
             }
         }
 
+        // Função para verificar se um número é par ou ímpar
         function verificarParOuImpar() {
             var numero = obterNumeroInteiroPositivo("Digite um número inteiro positivo:");
             if (numero !== null) {
@@ -99,6 +111,7 @@
             }
         }
 
+        // Função para calcular o fatorial de um número
         function calcularFatorial() {
             var numero = obterNumeroInteiroPositivo("Digite um número inteiro positivo:");
             if (numero !== null) {
@@ -107,10 +120,12 @@
             }
         }
 
+        // Função para redirecionar para a página inicial
         function voltarParaIndex() {
             window.location.href = "C:/Lab/Atividades Laboratório de Engenharia de Software/AtividadesJavaScript/index.html";
         }
 
+        // Função para obter um número inteiro positivo do usuário
         function obterNumeroInteiroPositivo(mensagem) {
             var numero = parseInt(prompt(mensagem));
             if (Number.isInteger(numero) && numero >= 0) {
@@ -121,6 +136,7 @@
             }
         }
 
+        // Função para calcular o fatorial de um número
         function calcularFatorialDoNumero(numero) {
             var fatorial = 1;
             for (var i = 2; i <= numero; i++) {
@@ -129,10 +145,12 @@
             return fatorial;
         }
 
+        // Função para exibir uma mensagem de alerta
         function exibirAlerta(mensagem) {
             alert(mensagem);
         }
 
+        // Função para exibir o resultado na página
         function exibirResultado(resultado) {
             var resultadoElemento = document.createElement("p");
             resultadoElemento.textContent = resultado;

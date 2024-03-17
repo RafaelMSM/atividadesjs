@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadados do documento -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da página -->
+    <title>Atividade 4</title>
+    <!-- Estilos CSS embutidos -->
+    <style>
+        /* Estilos para o corpo da página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        /* Estilos para o contêiner principal */
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+        }
+        /* Estilos para os cabeçalhos */
+        h2 {
+            color: #333;
+        }
+        /* Estilos para os parágrafos */
+        p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        /* Estilos para os formulários */
+        form {
+            display: none;
+        }
+        /* Estilos para os formulários ativos */
+        .form-active {
+            display: block;
+        }
+        /* Estilos para o contêiner dos formulários */
+        .form-container {
+            margin-top: 20px;
+            text-align: left;
+        }
+        /* Estilos para os rótulos */
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        /* Estilos para os campos de entrada */
+        input[type="text"],
+        input[type="email"],
+        input[type="date"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        /* Estilos para os campos de entrada com foco */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #4caf50;
+        }
+        /* Estilos para os botões */
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+        /* Estilos para o hover dos botões */
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Contêiner principal -->
+    <div class="container">
+        <!-- Título da atividade -->
+        <h2>Atividade 4.1</h2>
+        <!-- Descrição da atividade -->
+        <p>Preencha o formulário abaixo:</p>
+
+        <!-- Contêiner dos formulários -->
+        <div class="form-container">
+            <!-- Radio buttons para selecionar o tipo de cadastro -->
+            <label for="radioAluno">Aluno</label>
+            <input type="radio" id="radioAluno" name="tipoCadastro" value="aluno" onclick="mostrarForm('alunoForm')" checked>
+            <label for="radioProfessor">Professor</label>
+            <input type="radio" id="radioProfessor" name="tipoCadastro" value="professor" onclick="mostrarForm('professorForm')">
+
+            <!-- Formulário de cadastro de aluno -->
+            <form id="alunoForm" class="form-active" onsubmit="cadastrarAluno(event)">
+                <h3>Cadastro de Aluno</h3>
+                <label for="nomeAluno">Nome:</label>
+                <input type="text" id="nomeAluno" placeholder="Digite o nome" required><br>
+                <label for="sobrenomeAluno">Sobrenome:</label>
+                <input type="text" id="sobrenomeAluno" placeholder="Digite o sobrenome" required><br>
+                <label for="emailAluno">Email:</label>
+                <input type="email" id="emailAluno" placeholder="exemplo@dominio.com" required><br>
+                <label for="dataNascimentoAluno">Data de Nascimento:</label>
+                <input type="date" id="dataNascimentoAluno" required><br>
+                <label for="cursoAluno">Curso:</label>
+                <input type="text" id="cursoAluno" placeholder="Digite o curso" required><br>
+                <button type="submit">Cadastrar Aluno</button>
+            </form>
+
+            <!-- Formulário de cadastro de professor -->
+            <form id="professorForm" onsubmit="cadastrarProfessor(event)">
+                <h3>Cadastro de Professor</h3>
+                <label for="nomeProfessor">Nome:</label>
+                <input type="text" id="nomeProfessor" placeholder="Digite o nome" required><br>
+                <label for="sobrenomeProfessor">Sobrenome:</label>
+                <input type="text" id="sobrenomeProfessor" placeholder="Digite o sobrenome" required><br>
+                <label for="emailProfessor">Email:</label>
+                <input type="email" id="emailProfessor" placeholder="exemplo@dominio.com" required><br>
+                <label for="dataNascimentoProfessor">Data de Nascimento:</label>
+                <input type="date" id="dataNascimentoProfessor" required><br>
+                <label for="areaAtuacaoProfessor">Área de Atuação:</label>
+                <input type="text" id="areaAtuacaoProfessor" placeholder="Digite a área de atuação" required><br>
+                <label for="linkLattesProfessor">Link do Lattes:</label>
+                <input type="text" id="linkLattesProfessor" placeholder="Digite o link do Lattes" required><br>
+                <button type="submit">Cadastrar Professor</button>
+            </form>
+            <!-- Botões para voltar para a atividade principal e para o índice -->
+            <button onclick="voltarParaAtividadePrincipal()">Voltar para Atividade 4</button>
+            <button onclick="voltarParaIndex()">Voltar para o Index</button>
+        </div>
+    </div>
+
+    <!-- Script JavaScript -->
+    <script>
+        // Definição da classe Pessoa
+        class Pessoa {
+            constructor(nome, sobrenome, email, dataNascimento) {
+                this.nome = nome;
+                this.sobrenome = sobrenome;
+                this.email = email;
+                this.dataNascimento = dataNascimento;
+            }
+
+            nomeCompleto() {
+                return `${this.nome} ${this.sobrenome}`;
+            }
+        }
+
+        // Definição da classe Aluno que herda de Pessoa
+        class Aluno extends Pessoa {
+            constructor(nome, sobrenome, email, dataNascimento, curso) {
+                super(nome, sobrenome, email, dataNascimento);
+                this.curso = curso;
+            }
+        }
+
+        // Definição da classe Professor que herda de Pessoa
+        class Professor extends Pessoa {
+            constructor(nome, sobrenome, email, dataNascimento, areaAtuacao, linkLattes) {
+                super(nome, sobrenome, email, dataNascimento);
+                this.areaAtuacao = areaAtuacao;
+                this.linkLattes = linkLattes;
+            }
+        }
+
+        // Mostrar o formulário correspondente ao radio button selecionado
+        function mostrarForm(id) {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                if (form.id === id) {
+                    form.classList.add('form-active');
+                } else {
+                    form.classList.remove('form-active');
+                }
+            });
+        }
+
+        // Cadastro de aluno
+        function cadastrarAluno(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nomeAluno').value;
+            const sobrenome = document.getElementById('sobrenomeAluno').value;
+            const email = document.getElementById('emailAluno').value;
+            const dataNascimento = document.getElementById('dataNascimentoAluno').value;
+            const curso = document.getElementById('cursoAluno').value;
+
+            const aluno = new Aluno(nome, sobrenome, email, dataNascimento, curso);
+
+            // Aqui você pode fazer o que desejar com os dados do aluno
+            console.log("Cadastro de aluno:");
+            console.log("Nome:", aluno.nomeCompleto());
+            console.log("Email:", aluno.email);
+            console.log("Data de Nascimento:", aluno.dataNascimento);
+            console.log("Curso:", aluno.curso);
+
+            // Limpar os campos do formulário após o cadastro
+            event.target.reset();
+        }
+
+        // Cadastro de professor
+        function cadastrarProfessor(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nomeProfessor').value;
+            const sobrenome = document.getElementById('sobrenomeProfessor').value;
+            const email = document.getElementById('emailProfessor').value;
+            const dataNascimento = document.getElementById('dataNascimentoProfessor').value;
+            const areaAtuacao = document.getElementById('areaAtuacaoProfessor').value;
+            const linkLattes = document.getElementById('linkLattesProfessor').value;
+
+            const professor = new Professor(nome, sobrenome, email, dataNascimento, areaAtuacao, linkLattes);
+
+            // Aqui você pode fazer o que desejar com os dados do professor
+            console.log("Cadastro de professor:");
+            console.log("Nome:", professor.nomeCompleto());
+            console.log("Email:", professor.email);
+            console.log("Data de Nascimento:", professor.dataNascimento);
+            console.log("Área de Atuação:", professor.areaAtuacao);
+            console.log("Link do Lattes:", professor.linkLattes);
+
+            // Limpar os campos do formulário após o cadastro
+            event.target.reset();
+        }
+
+        // Ao carregar a página, mostrar o formulário de cadastro de aluno por padrão
+        window.onload = function () {
+            mostrarForm('alunoForm');
+        };
+
+        // Função para voltar para a atividade principal
+        function voltarParaAtividadePrincipal() {
+            window.location.href = "atividade4.html";
+        }
+
+        // Função para voltar para o índice
+        function voltarParaIndex() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 100px;
+        }
+        #clock {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+
+<div id="clock"></div>
+
+<script>
+    function atualizarRelogio() {
+        var agora = new Date();
+        var horas = agora.getHours();
+        var minutos = agora.getMinutes();
+        var segundos = agora.getSeconds();
+
+        horas = (horas < 10) ? "0" + horas : horas;
+        minutos = (minutos < 10) ? "0" + minutos : minutos;
+        segundos = (segundos < 10) ? "0" + segundos : segundos;
+
+        var horaFormatada = horas + ":" + minutos + ":" + segundos;
+        document.getElementById("clock").innerText = horaFormatada;
+
+        // Atualiza o relógio a cada segundo
+        setTimeout(atualizarRelogio, 1000);
+    }
+
+    // Inicia o relógio
+    atualizarRelogio();
+</script>
+
+</body>
+</html>
