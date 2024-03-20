@@ -3,43 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relógio</title>
+    <title>Contador de Pessoas</title>
     <style>
+        /* Estilos para o corpo da página */
         body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            margin: 100px;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            text-align: center; /* Centraliza o conteúdo na página */
         }
-        #clock {
-            font-size: 2em;
+        /* Estilos para a caixa arredondada */
+        .container {
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            display: inline-block;
+            text-align: left;
+            position: relative;
+        }
+        /* Estilos para os cabeçalhos */
+        h1 {
+            color: #333;
+        }
+        /* Estilos para os botões */
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+        /* Estilos para o hover dos botões */
+        button:hover {
+            background-color: #45a049;
+        }
+        /* Estilos para o parágrafo */
+        p {
+            margin-top: 10px;
+            font-size: 18px;
+            text-align: center; /* Centraliza o texto */
+        }
+        /* Estilos para os elementos de contagem */
+        .count-container {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+        }
+        .count-container img {
+            width: 50px;
+            margin-bottom: 5px;
+        }
+        .count-container button {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        /* Estilos para os elementos de contagem de valores */
+        .count-value {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            font-size: 16px;
+        }
+        /* Estilos para o botão de voltar */
+        #backButton {
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Estilos para o botão de reiniciar */
+        #resetButton {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            height: 44px; /* Definindo altura fixa para o botão */
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Total de Pessoas</h1>
+        <div id="counter">
+            <p>Total: <span class="count-value" id="totalCount">0</span></p>
+            <div class="count-container">
+                <img src="https://emojicdn.elk.sh/👨" alt="Homem">
+                <p>Homens</p>
+                <span class="count-value" id="menCount">0</span>
+                <button id="decreaseMenButton">-</button>
+                <button id="increaseMenButton">+</button>
+            </div>
+            <div class="count-container">
+                <img src="https://emojicdn.elk.sh/👩" alt="Mulher">
+                <p>Mulheres</p>
+                <span class="count-value" id="womenCount">0</span>
+                <button id="decreaseWomenButton">-</button>
+                <button id="increaseWomenButton">+</button>
+            </div>
+        </div>
+        <button id="backButton">Voltar para o Index</button>
+        <button id="resetButton"><img src="https://emojicdn.elk.sh/🔄" alt="Reiniciar" width="30"></button>
+    </div>
 
-<div id="clock"></div>
+    <script>
+        // Obtendo elementos do DOM
+        const resetButton = document.getElementById('resetButton');
+        const menCountElement = document.getElementById('menCount');
+        const womenCountElement = document.getElementById('womenCount');
+        const totalCountElement = document.getElementById('totalCount');
 
-<script>
-    function atualizarRelogio() {
-        var agora = new Date();
-        var horas = agora.getHours();
-        var minutos = agora.getMinutes();
-        var segundos = agora.getSeconds();
+        let menCount = 0;
+        let womenCount = 0;
+        let totalCount = 0;
 
-        horas = (horas < 10) ? "0" + horas : horas;
-        minutos = (minutos < 10) ? "0" + minutos : minutos;
-        segundos = (segundos < 10) ? "0" + segundos : segundos;
+        // Função para atualizar a contagem total
+        function updateTotalCount() {
+            totalCount = menCount + womenCount;
+            totalCountElement.textContent = totalCount;
+        }
 
-        var horaFormatada = horas + ":" + minutos + ":" + segundos;
-        document.getElementById("clock").innerText = horaFormatada;
+        // Função para atualizar a contagem de homens
+        function updateMenCount() {
+            menCountElement.textContent = menCount;
+            updateTotalCount();
+        }
 
-        // Atualiza o relógio a cada segundo
-        setTimeout(atualizarRelogio, 1000);
-    }
+        // Função para atualizar a contagem de mulheres
+        function updateWomenCount() {
+            womenCountElement.textContent = womenCount;
+            updateTotalCount();
+        }
 
-    // Inicia o relógio
-    atualizarRelogio();
-</script>
+        // Event listener para o botão de reiniciar
+        resetButton.addEventListener('click', function() {
+            menCount = 0;
+            womenCount = 0;
+            updateMenCount();
+            updateWomenCount();
+        });
 
+        // Event listener para o botão de adicionar homens
+        document.getElementById('increaseMenButton').addEventListener('click', function() {
+            menCount++;
+            updateMenCount();
+        });
+
+        // Event listener para o botão de remover homens
+        document.getElementById('decreaseMenButton').addEventListener('click', function() {
+            if (menCount > 0) {
+                menCount--;
+                updateMenCount();
+            }
+        });
+
+        // Event listener para o botão de adicionar mulheres
+        document.getElementById('increaseWomenButton').addEventListener('click', function() {
+            womenCount++;
+            updateWomenCount();
+        });
+
+        // Event listener para o botão de remover mulheres
+        document.getElementById('decreaseWomenButton').addEventListener('click', function() {
+            if (womenCount > 0) {
+                womenCount--;
+                updateWomenCount();
+            }
+        });
+    </script>
 </body>
 </html>
