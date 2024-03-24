@@ -76,103 +76,107 @@
             margin-left: auto;
             margin-right: auto;
         }
-        /* Estilos para o botão de reiniciar */
-        #resetButton {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            height: 44px; /* Definindo altura fixa para o botão */
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Total de Pessoas</h1>
-        <div id="counter">
-            <p>Total: <span class="count-value" id="totalCount">0</span></p>
-            <div class="count-container">
-                <img src="https://emojicdn.elk.sh/👨" alt="Homem">
-                <p>Homens</p>
-                <span class="count-value" id="menCount">0</span>
-                <button id="decreaseMenButton">-</button>
-                <button id="increaseMenButton">+</button>
-            </div>
-            <div class="count-container">
-                <img src="https://emojicdn.elk.sh/👩" alt="Mulher">
-                <p>Mulheres</p>
-                <span class="count-value" id="womenCount">0</span>
-                <button id="decreaseWomenButton">-</button>
-                <button id="increaseWomenButton">+</button>
-            </div>
-        </div>
+        <button id="resetButton"><img src="https://emojicdn.elk.sh/🔄 " alt="Reiniciar" width="30"></button>
+        <div id="counter"></div>
         <button id="backButton">Voltar para o Index</button>
-        <button id="resetButton"><img src="https://emojicdn.elk.sh/🔄" alt="Reiniciar" width="30"></button>
     </div>
 
-    <script>
+     <script>
         // Obtendo elementos do DOM
         const resetButton = document.getElementById('resetButton');
-        const menCountElement = document.getElementById('menCount');
-        const womenCountElement = document.getElementById('womenCount');
-        const totalCountElement = document.getElementById('totalCount');
+        const counter = document.getElementById('counter');
 
         let menCount = 0;
         let womenCount = 0;
-        let totalCount = 0;
 
-        // Função para atualizar a contagem total
-        function updateTotalCount() {
-            totalCount = menCount + womenCount;
-            totalCountElement.textContent = totalCount;
-        }
+        // Função para criar e atualizar a contagem de pessoas
+        function updateCounter() {
+            counter.innerHTML = ''; // Limpa o conteúdo do contador antes de atualizar
 
-        // Função para atualizar a contagem de homens
-        function updateMenCount() {
-            menCountElement.textContent = menCount;
-            updateTotalCount();
-        }
+            const totalCount = menCount + womenCount;
 
-        // Função para atualizar a contagem de mulheres
-        function updateWomenCount() {
-            womenCountElement.textContent = womenCount;
-            updateTotalCount();
+            const totalCountElement = document.createElement('p');
+            totalCountElement.innerHTML = `Total: <span class="count-value">${totalCount}</span>`;
+            counter.appendChild(totalCountElement);
+
+            const menContainer = document.createElement('div');
+            menContainer.classList.add('count-container');
+            const menImage = document.createElement('img');
+            menImage.src = 'https://emojicdn.elk.sh/👨';
+            menImage.alt = 'Homem';
+            menContainer.appendChild(menImage);
+            const menParagraph = document.createElement('p');
+            menParagraph.textContent = 'Homens';
+            menContainer.appendChild(menParagraph);
+            const menValue = document.createElement('span');
+            menValue.classList.add('count-value');
+            menValue.textContent = menCount;
+            menContainer.appendChild(menValue);
+            const decreaseMenButton = document.createElement('button');
+            decreaseMenButton.textContent = '-';
+            decreaseMenButton.addEventListener('click', function() {
+                if (menCount > 0) {
+                    menCount--;
+                    updateCounter();
+                }
+            });
+            menContainer.appendChild(decreaseMenButton);
+            const increaseMenButton = document.createElement('button');
+            increaseMenButton.textContent = '+';
+            increaseMenButton.addEventListener('click', function() {
+                menCount++;
+                updateCounter();
+            });
+            menContainer.appendChild(increaseMenButton);
+
+            const womenContainer = document.createElement('div');
+            womenContainer.classList.add('count-container');
+            const womenImage = document.createElement('img');
+            womenImage.src = 'https://emojicdn.elk.sh/👩';
+            womenImage.alt = 'Mulher';
+            womenContainer.appendChild(womenImage);
+            const womenParagraph = document.createElement('p');
+            womenParagraph.textContent = 'Mulheres';
+            womenContainer.appendChild(womenParagraph);
+            const womenValue = document.createElement('span');
+            womenValue.classList.add('count-value');
+            womenValue.textContent = womenCount;
+            womenContainer.appendChild(womenValue);
+            const decreaseWomenButton = document.createElement('button');
+            decreaseWomenButton.textContent = '-';
+            decreaseWomenButton.addEventListener('click', function() {
+                if (womenCount > 0) {
+                    womenCount--;
+                    updateCounter();
+                }
+            });
+            womenContainer.appendChild(decreaseWomenButton);
+            const increaseWomenButton = document.createElement('button');
+            increaseWomenButton.textContent = '+';
+            increaseWomenButton.addEventListener('click', function() {
+                womenCount++;
+                updateCounter();
+            });
+            womenContainer.appendChild(increaseWomenButton);
+
+            counter.appendChild(menContainer);
+            counter.appendChild(womenContainer);
         }
 
         // Event listener para o botão de reiniciar
         resetButton.addEventListener('click', function() {
             menCount = 0;
             womenCount = 0;
-            updateMenCount();
-            updateWomenCount();
+            updateCounter();
         });
 
-        // Event listener para o botão de adicionar homens
-        document.getElementById('increaseMenButton').addEventListener('click', function() {
-            menCount++;
-            updateMenCount();
-        });
-
-        // Event listener para o botão de remover homens
-        document.getElementById('decreaseMenButton').addEventListener('click', function() {
-            if (menCount > 0) {
-                menCount--;
-                updateMenCount();
-            }
-        });
-
-        // Event listener para o botão de adicionar mulheres
-        document.getElementById('increaseWomenButton').addEventListener('click', function() {
-            womenCount++;
-            updateWomenCount();
-        });
-
-        // Event listener para o botão de remover mulheres
-        document.getElementById('decreaseWomenButton').addEventListener('click', function() {
-            if (womenCount > 0) {
-                womenCount--;
-                updateWomenCount();
-            }
-        });
-    </script>
+        // Atualiza o contador inicialmente
+        updateCounter();
+    </script> 
 </body>
 </html>
