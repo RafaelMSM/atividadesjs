@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Pessoas</title>
+    <style>
+        /* Estilos para o corpo da página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            text-align: center; /* Centraliza o conteúdo na página */
+        }
+        /* Estilos para a caixa arredondada */
+        .container {
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            display: inline-block;
+            text-align: left;
+            position: relative;
+        }
+        /* Estilos para os cabeçalhos */
+        h1 {
+            color: #333;
+        }
+        /* Estilos para os botões */
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+        /* Estilos para o hover dos botões */
+        button:hover {
+            background-color: #45a049;
+        }
+        /* Estilos para o parágrafo */
+        p {
+            margin-top: 10px;
+            font-size: 18px;
+            text-align: center; /* Centraliza o texto */
+        }
+        /* Estilos para os elementos de contagem */
+        .count-container {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+        }
+        .count-container img {
+            width: 50px;
+            margin-bottom: 5px;
+        }
+        .count-container button {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        /* Estilos para os elementos de contagem de valores */
+        .count-value {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            font-size: 16px;
+        }
+        /* Estilos para o botão de voltar */
+        #backButton {
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Total de Pessoas</h1>
+        <button id="resetButton"><img src="https://emojicdn.elk.sh/🔄 " alt="Reiniciar" width="30"></button>
+        <div id="counter"></div>
+        <button id="backButton">Voltar para o Index</button>
+    </div>
+
+     <script>
+        // Obtendo elementos do DOM
+        const resetButton = document.getElementById('resetButton');
+        const counter = document.getElementById('counter');
+
+        let menCount = 0;
+        let womenCount = 0;
+
+        // Função para criar e atualizar a contagem de pessoas
+        function updateCounter() {
+            counter.innerHTML = ''; // Limpa o conteúdo do contador antes de atualizar
+
+            const totalCount = menCount + womenCount;
+
+            const totalCountElement = document.createElement('p');
+            totalCountElement.innerHTML = `Total: <span class="count-value">${totalCount}</span>`;
+            counter.appendChild(totalCountElement);
+
+            const menContainer = document.createElement('div');
+            menContainer.classList.add('count-container');
+            const menImage = document.createElement('img');
+            menImage.src = 'https://emojicdn.elk.sh/👨';
+            menImage.alt = 'Homem';
+            menContainer.appendChild(menImage);
+            const menParagraph = document.createElement('p');
+            menParagraph.textContent = 'Homens';
+            menContainer.appendChild(menParagraph);
+            const menValue = document.createElement('span');
+            menValue.classList.add('count-value');
+            menValue.textContent = menCount;
+            menContainer.appendChild(menValue);
+            const decreaseMenButton = document.createElement('button');
+            decreaseMenButton.textContent = '-';
+            decreaseMenButton.addEventListener('click', function() {
+                if (menCount > 0) {
+                    menCount--;
+                    updateCounter();
+                }
+            });
+            menContainer.appendChild(decreaseMenButton);
+            const increaseMenButton = document.createElement('button');
+            increaseMenButton.textContent = '+';
+            increaseMenButton.addEventListener('click', function() {
+                menCount++;
+                updateCounter();
+            });
+            menContainer.appendChild(increaseMenButton);
+
+            const womenContainer = document.createElement('div');
+            womenContainer.classList.add('count-container');
+            const womenImage = document.createElement('img');
+            womenImage.src = 'https://emojicdn.elk.sh/👩';
+            womenImage.alt = 'Mulher';
+            womenContainer.appendChild(womenImage);
+            const womenParagraph = document.createElement('p');
+            womenParagraph.textContent = 'Mulheres';
+            womenContainer.appendChild(womenParagraph);
+            const womenValue = document.createElement('span');
+            womenValue.classList.add('count-value');
+            womenValue.textContent = womenCount;
+            womenContainer.appendChild(womenValue);
+            const decreaseWomenButton = document.createElement('button');
+            decreaseWomenButton.textContent = '-';
+            decreaseWomenButton.addEventListener('click', function() {
+                if (womenCount > 0) {
+                    womenCount--;
+                    updateCounter();
+                }
+            });
+            womenContainer.appendChild(decreaseWomenButton);
+            const increaseWomenButton = document.createElement('button');
+            increaseWomenButton.textContent = '+';
+            increaseWomenButton.addEventListener('click', function() {
+                womenCount++;
+                updateCounter();
+            });
+            womenContainer.appendChild(increaseWomenButton);
+
+            counter.appendChild(menContainer);
+            counter.appendChild(womenContainer);
+        }
+
+        // Event listener para o botão de reiniciar
+        resetButton.addEventListener('click', function() {
+            menCount = 0;
+            womenCount = 0;
+            updateCounter();
+        });
+
+        // Atualiza o contador inicialmente
+        updateCounter();
+    </script> 
+</body>
+</html>
