@@ -90,6 +90,7 @@
         // Obtendo elementos do DOM
         const resetButton = document.getElementById('resetButton');
         const counter = document.getElementById('counter');
+        const backButton = document.getElementById('backButton');
 
         let menCount = 0;
         let womenCount = 0;
@@ -174,6 +175,16 @@
             womenCount = 0;
             updateCounter();
         });
+
+        // Event listener para o botão de voltar
+        backButton.addEventListener('click', function() {
+            voltarParaIndex();
+        });
+
+        // Função para voltar para o index
+        function voltarParaIndex() {
+            window.location.href = "index.html";
+        }
 
         // Atualiza o contador inicialmente
         updateCounter();
