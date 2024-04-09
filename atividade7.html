@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letreiro Digitado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            position: relative; /* Adicionado para permitir o posicionamento absoluto do botão */
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #letreiro {
+            font-size: 24px;
+            border-bottom: 2px solid #333;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            position: absolute; /* Posicionamento absoluto */
+            bottom: 20px; /* Distância do fundo */
+            right: 20px; /* Distância da direita */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+  <h1>Letreiro Digitado</h1>
+  <div id="root">
+    <div id="letreiro"></div>
+  </div>
+  <button id="backButton" onclick="voltarParaIndex()">Voltar</button>
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js"></script>
+
+  <script type="text/babel">
+    const Typewriter = ({ text }) => {
+      const [displayText, setDisplayText] = React.useState('');
+
+      React.useEffect(() => {
+        let index = 0;
+        const intervalId = setInterval(() => {
+          setDisplayText(prevText => {
+            if (index === text.length) {
+              index = 0;
+              return '';
+            }
+            return prevText + text[index++];
+          });
+        }, 100); // Ajuste a velocidade da digitação alterando o valor do intervalo
+
+        return () => {
+          clearInterval(intervalId);
+        };
+      }, [text]);
+
+      return <div id="letreiro">{displayText}</div>;
+    };
+
+    const App = () => {
+      return (
+        <div>
+          <Typewriter text="Venha estudar na Fatec" />
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+
+    function voltarParaIndex() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
